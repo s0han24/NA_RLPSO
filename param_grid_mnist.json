@@ -1,7 +1,9 @@
 {
-    "hidden_size": [64 , 128 , 256],
+    "filters1": [32, 64, 128],
+    "filters2": [64, 128, 256],
     "dropout_rate": [0.1, 0.2, 0.3],
     "learning_rate": [0.0001, 0.001, 0.01],
-    "batch_size": [5 , 6 , 7],
-    "epochs": [3, 4]
+    "batch_size": [32, 64, 128],
+    "epochs": 3,
+    "optimizer_type": ["adam", "sgd"]
 }
