@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ScatterChart, Scatter, ZAxis } from 'recharts';
 
-export default function PSOVisualisations() {
+export default function RLPSOVisualisations() {
     // Parse data from the output
     const parseData = () => {
         // Initialize containers
@@ -40,65 +40,85 @@ export default function PSOVisualisations() {
 
         // Results from the text
         const lines = `
-    PSO
-    Epoch 1/3, Train Loss: 0.3206, Test Loss: 0.1477, Test Acc: 0.9561
-    Epoch 2/3, Train Loss: 0.2182, Test Loss: 0.1405, Test Acc: 0.9567
-    Epoch 3/3, Train Loss: 0.1957, Test Loss: 0.1340, Test Acc: 0.9620
-    Epoch 1/3, Train Loss: 0.2922, Test Loss: 0.1779, Test Acc: 0.9512
-    Epoch 2/3, Train Loss: 0.2182, Test Loss: 0.1557, Test Acc: 0.9621
-    Epoch 3/3, Train Loss: 0.2074, Test Loss: 0.1511, Test Acc: 0.9591
-    Epoch 1/3, Train Loss: 0.3601, Test Loss: 0.1671, Test Acc: 0.9503
-    Epoch 2/3, Train Loss: 0.1952, Test Loss: 0.1206, Test Acc: 0.9619
-    Epoch 3/3, Train Loss: 0.1572, Test Loss: 0.1043, Test Acc: 0.9677
-    number of particles:  3
-    Epoch 1/3, Train Loss: 0.3181, Test Loss: 0.1617, Test Acc: 0.9508
-    Epoch 2/3, Train Loss: 0.2188, Test Loss: 0.1830, Test Acc: 0.9459
-    Epoch 3/3, Train Loss: 0.1929, Test Loss: 0.1308, Test Acc: 0.9606
-    Epoch 1/3, Train Loss: 0.3106, Test Loss: 0.1600, Test Acc: 0.9513
-    Epoch 2/3, Train Loss: 0.2284, Test Loss: 0.1559, Test Acc: 0.9536
-    Epoch 3/3, Train Loss: 0.2132, Test Loss: 0.1519, Test Acc: 0.9589
-    Epoch 1/3, Train Loss: 0.3133, Test Loss: 0.1575, Test Acc: 0.9504
-    Epoch 2/3, Train Loss: 0.2006, Test Loss: 0.1210, Test Acc: 0.9640
-    Epoch 3/3, Train Loss: 0.1757, Test Loss: 0.1143, Test Acc: 0.9648
-    best value:  0.9648
-    Epoch 1/3, Train Loss: 0.3235, Test Loss: 0.1719, Test Acc: 0.9491
-    Epoch 2/3, Train Loss: 0.2124, Test Loss: 0.1251, Test Acc: 0.9612
-    Epoch 3/3, Train Loss: 0.1830, Test Loss: 0.1320, Test Acc: 0.9594
-    Epoch 1/3, Train Loss: 0.3048, Test Loss: 0.1277, Test Acc: 0.9583
-    Epoch 2/3, Train Loss: 0.1891, Test Loss: 0.1139, Test Acc: 0.9652
-    Epoch 3/3, Train Loss: 0.1699, Test Loss: 0.1204, Test Acc: 0.9633
-    Epoch 1/3, Train Loss: 0.3095, Test Loss: 0.1521, Test Acc: 0.9544
-    Epoch 2/3, Train Loss: 0.1975, Test Loss: 0.1268, Test Acc: 0.9628
-    Epoch 3/3, Train Loss: 0.1691, Test Loss: 0.1132, Test Acc: 0.9663
-    best value:  0.9663
-    Epoch 1/3, Train Loss: 0.3360, Test Loss: 0.1579, Test Acc: 0.9516
-    Epoch 2/3, Train Loss: 0.2246, Test Loss: 0.1906, Test Acc: 0.9466
-    Epoch 3/3, Train Loss: 0.2077, Test Loss: 0.1313, Test Acc: 0.9603
-    Epoch 1/3, Train Loss: 0.3488, Test Loss: 0.1567, Test Acc: 0.9542
-    Epoch 2/3, Train Loss: 0.2239, Test Loss: 0.1271, Test Acc: 0.9612
-    Epoch 3/3, Train Loss: 0.1955, Test Loss: 0.1221, Test Acc: 0.9622
-    Epoch 1/3, Train Loss: 0.3957, Test Loss: 0.1817, Test Acc: 0.9461
-    Epoch 2/3, Train Loss: 0.2059, Test Loss: 0.1328, Test Acc: 0.9591
-    Epoch 3/3, Train Loss: 0.1655, Test Loss: 0.1149, Test Acc: 0.9643
-    best value:  0.9663
-    Epoch 1/3, Train Loss: 0.3362, Test Loss: 0.1723, Test Acc: 0.9457
-    Epoch 2/3, Train Loss: 0.2312, Test Loss: 0.1436, Test Acc: 0.9558
-    Epoch 3/3, Train Loss: 0.2080, Test Loss: 0.1298, Test Acc: 0.9608
-    Epoch 1/3, Train Loss: 0.3285, Test Loss: 0.1554, Test Acc: 0.9527
-    Epoch 2/3, Train Loss: 0.2092, Test Loss: 0.1415, Test Acc: 0.9562
-    Epoch 3/3, Train Loss: 0.1898, Test Loss: 0.1217, Test Acc: 0.9644
-    Epoch 1/3, Train Loss: 0.5845, Test Loss: 0.2834, Test Acc: 0.9200
-    Epoch 2/3, Train Loss: 0.3025, Test Loss: 0.2161, Test Acc: 0.9372
-    Epoch 3/3, Train Loss: 0.2463, Test Loss: 0.1794, Test Acc: 0.9485
-    best value:  0.9663
-    Epoch 1/3, Train Loss: 0.3044, Test Loss: 0.1331, Test Acc: 0.9586
-    Epoch 2/3, Train Loss: 0.1978, Test Loss: 0.1261, Test Acc: 0.9634
-    Epoch 3/3, Train Loss: 0.1829, Test Loss: 0.1158, Test Acc: 0.9666
-    Epoch 1/3, Train Loss: 0.3038, Test Loss: 0.1451, Test Acc: 0.9567
-    Epoch 2/3, Train Loss: 0.1967, Test Loss: 0.1190, Test Acc: 0.9647
-    best value:  0.9666
-    Best accuracy: -0.9666
-    Best parameters: {'hidden_size': np.float64(77.84668354330827), 'dropout_rate': np.float64(0.2546615060267475), 'learning_rate': np.float64(0.0032184889008123998), 'batch_size': np.float64(6.421159019541096), 'epochs': np.float64(3.3653467626964515)}
+
+ RL PSO
+Epoch 1/3, Train Loss: 0.2806, Test Loss: 0.1394, Test Acc: 0.9559
+Epoch 2/3, Train Loss: 0.1889, Test Loss: 0.1236, Test Acc: 0.9642
+Epoch 3/3, Train Loss: 0.1683, Test Loss: 0.1156, Test Acc: 0.9682
+Epoch 1/3, Train Loss: 0.3720, Test Loss: 0.2124, Test Acc: 0.9387
+Epoch 2/3, Train Loss: 0.2967, Test Loss: 0.1910, Test Acc: 0.9456
+Epoch 3/3, Train Loss: 0.2987, Test Loss: 0.1928, Test Acc: 0.9480
+Epoch 1/3, Train Loss: 0.2491, Test Loss: 0.1249, Test Acc: 0.9623
+Epoch 2/3, Train Loss: 0.1465, Test Loss: 0.1042, Test Acc: 0.9687
+Epoch 3/3, Train Loss: 0.1214, Test Loss: 0.1104, Test Acc: 0.9685
+
+Training progress:   0%|          | 0/5 [00:00<?, ?it/s]
+
+Epoch 1/3, Train Loss: 0.2816, Test Loss: 0.1244, Test Acc: 0.9629
+Epoch 2/3, Train Loss: 0.1850, Test Loss: 0.1228, Test Acc: 0.9647
+Epoch 3/3, Train Loss: 0.1679, Test Loss: 0.1207, Test Acc: 0.9662
+Epoch 1/3, Train Loss: 0.3240, Test Loss: 0.1647, Test Acc: 0.9521
+Epoch 2/3, Train Loss: 0.2360, Test Loss: 0.1656, Test Acc: 0.9559
+Epoch 3/3, Train Loss: 0.2165, Test Loss: 0.1372, Test Acc: 0.9645
+Epoch 1/3, Train Loss: 0.2679, Test Loss: 0.1277, Test Acc: 0.9608
+Epoch 2/3, Train Loss: 0.1678, Test Loss: 0.1088, Test Acc: 0.9681
+
+Training progress:  20%|██        | 1/5 [02:33<10:13, 153.41s/it]
+
+Epoch 3/3, Train Loss: 0.1481, Test Loss: 0.1163, Test Acc: 0.9665
+Epoch 1/3, Train Loss: 0.2777, Test Loss: 0.1415, Test Acc: 0.9571
+Epoch 2/3, Train Loss: 0.1876, Test Loss: 0.1299, Test Acc: 0.9624
+Epoch 3/3, Train Loss: 0.1627, Test Loss: 0.1054, Test Acc: 0.9706
+Epoch 1/3, Train Loss: 0.2995, Test Loss: 0.1596, Test Acc: 0.9503
+Epoch 2/3, Train Loss: 0.2168, Test Loss: 0.1288, Test Acc: 0.9636
+Epoch 3/3, Train Loss: 0.1960, Test Loss: 0.1266, Test Acc: 0.9667
+Epoch 1/3, Train Loss: 0.2591, Test Loss: 0.1352, Test Acc: 0.9591
+Epoch 2/3, Train Loss: 0.1647, Test Loss: 0.1185, Test Acc: 0.9665
+
+Training progress:  40%|████      | 2/5 [05:08<07:42, 154.20s/it]
+
+Epoch 3/3, Train Loss: 0.1432, Test Loss: 0.0999, Test Acc: 0.9715
+Epoch 1/3, Train Loss: 0.2663, Test Loss: 0.1384, Test Acc: 0.9577
+Epoch 2/3, Train Loss: 0.1762, Test Loss: 0.1357, Test Acc: 0.9614
+Epoch 3/3, Train Loss: 0.1486, Test Loss: 0.1459, Test Acc: 0.9623
+Epoch 1/3, Train Loss: 0.2648, Test Loss: 0.1160, Test Acc: 0.9645
+Epoch 2/3, Train Loss: 0.1592, Test Loss: 0.1054, Test Acc: 0.9677
+Epoch 3/3, Train Loss: 0.1387, Test Loss: 0.1037, Test Acc: 0.9695
+Epoch 1/3, Train Loss: 0.2639, Test Loss: 0.1316, Test Acc: 0.9590
+Epoch 2/3, Train Loss: 0.1589, Test Loss: 0.1128, Test Acc: 0.9662
+
+Training progress:  60%|██████    | 3/5 [08:01<05:25, 162.82s/it]
+
+Epoch 3/3, Train Loss: 0.1390, Test Loss: 0.1073, Test Acc: 0.9689
+Epoch 1/3, Train Loss: 0.2661, Test Loss: 0.1329, Test Acc: 0.9597
+Epoch 2/3, Train Loss: 0.1712, Test Loss: 0.1101, Test Acc: 0.9653
+Epoch 3/3, Train Loss: 0.1498, Test Loss: 0.1088, Test Acc: 0.9687
+Epoch 1/3, Train Loss: 0.2564, Test Loss: 0.1230, Test Acc: 0.9597
+Epoch 2/3, Train Loss: 0.1422, Test Loss: 0.1004, Test Acc: 0.9691
+Epoch 3/3, Train Loss: 0.1206, Test Loss: 0.0836, Test Acc: 0.9744
+Epoch 1/3, Train Loss: 0.2512, Test Loss: 0.1237, Test Acc: 0.9629
+Epoch 2/3, Train Loss: 0.1423, Test Loss: 0.0942, Test Acc: 0.9719
+
+Training progress:  80%|████████  | 4/5 [10:36<02:39, 159.75s/it]
+
+Epoch 3/3, Train Loss: 0.1188, Test Loss: 0.0894, Test Acc: 0.9723
+Epoch 1/3, Train Loss: 0.2596, Test Loss: 0.1301, Test Acc: 0.9578
+Epoch 2/3, Train Loss: 0.1542, Test Loss: 0.1108, Test Acc: 0.9660
+Epoch 3/3, Train Loss: 0.1347, Test Loss: 0.1017, Test Acc: 0.9709
+Epoch 1/3, Train Loss: 0.2508, Test Loss: 0.1155, Test Acc: 0.9637
+Epoch 2/3, Train Loss: 0.1324, Test Loss: 0.0927, Test Acc: 0.9712
+Epoch 3/3, Train Loss: 0.1030, Test Loss: 0.0852, Test Acc: 0.9738
+Epoch 1/3, Train Loss: 0.2531, Test Loss: 0.1148, Test Acc: 0.9647
+Epoch 2/3, Train Loss: 0.1356, Test Loss: 0.0996, Test Acc: 0.9692
+
+Training progress: 100%|██████████| 5/5 [13:10<00:00, 158.17s/it]
+
+Epoch 3/3, Train Loss: 0.1119, Test Loss: 0.0856, Test Acc: 0.9745
+Best accuracy: -0.9745
+Best parameters: {'hidden_size': np.float64(181.05556923646176), 'dropout_rate': np.float64(0.2524652647470446), 'learning_rate': np.float64(0.001084250702079491), 'batch_size': np.float64(5.206755104092855), 'epochs': np.float64(3.272990711862847)}
+
+
+
     `.trim().split('\n');
 
 
@@ -216,7 +236,7 @@ export default function PSOVisualisations() {
 
     const charts = {
         convergence: {
-            title: 'PSO Convergence',
+            title: 'RL PSO Convergence',
             description: 'Shows min, max and average accuracy across iterations'
         },
         particles: {
@@ -225,13 +245,13 @@ export default function PSOVisualisations() {
         },
         bestParams: {
             title: 'Best Parameters Found',
-            description: 'The optimal hyperparameters discovered by PSO'
+            description: 'The optimal hyperparameters discovered by RL PSO'
         }
     };
 
     return (
         <div className="p-4" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px', color: 'black' }}>PSO Hyperparameter Tuning Results</h1>
+            <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px', color: 'black' }}>RL PSO Hyperparameter Tuning Results</h1>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '24px' }}>
                 {Object.keys(charts).map(chartType => (
@@ -394,7 +414,7 @@ export default function PSOVisualisations() {
 
             <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '4px', boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
                 <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>Summary</h2>
-                <p style={{ marginBottom: '8px' }}>The PSO algorithm converged to a best test accuracy of <strong>{Math.max(...data.bestAccuracies.map(b => b.globalBestAccuracy)).toFixed(4)}</strong>.</p>
+                <p style={{ marginBottom: '8px' }}>The RL PSO algorithm converged to a best test accuracy of <strong>{Math.max(...data.bestAccuracies.map(b => b.globalBestAccuracy)).toFixed(4)}</strong>.</p>
                 <p style={{ marginBottom: '8px' }}>The best parameters found were:</p>
                 <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: '8px' }}>
                     <li>Hidden Size: {data.bestParams.hidden_size}</li>
