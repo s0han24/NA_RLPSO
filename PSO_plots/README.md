@@ -24,8 +24,8 @@ The application will now run at [http://localhost:5173](http://localhost:5173).
 
 The visualization includes:
 
-**1. PSO hyperparameter tuning**
-**2. RLPSO hyperparameter tuning**
-**3. Bayesian hyperparameter tuning**
+**1. PSO hyperparameter tuning**  
+**2. RLPSO hyperparameter tuning**  
+**3. Bayesian hyperparameter tuning**  
 
 Currently bayesian outperforms RLPSO
