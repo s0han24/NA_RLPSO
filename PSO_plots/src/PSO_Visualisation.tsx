@@ -250,23 +250,6 @@ export default function PSOVisualisations() {
                         {charts[chartType as keyof typeof charts].title}
                     </button>
                 ))}
-                {/* {Object.keys(charts).map(chartType => (
-                    <button
-                        key={chartType}
-                        onClick={() => setActiveChart(chartType)}
-                        style={{
-                            padding: '8px 16px',
-                            borderRadius: '4px',
-                            backgroundColor: activeChart === chartType ? '#2563eb' : '#e5e7eb',
-                            color: activeChart === chartType ? 'white' : '#1f2937',
-                            border: 'none',
-                            cursor: 'pointer',
-                            fontSize: '14px',
-                            fontWeight: '500'
-                        }}
-                    >
-                    </button>
-                ))} */}
             </div>
 
             <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '4px', boxShadow: '0 1px 3px rgba(0,0,0,0.12)', marginBottom: '16px' }}>
@@ -282,6 +265,7 @@ export default function PSOVisualisations() {
                                     dataKey="iteration"
                                     name="Iteration"
                                     label={{ value: 'Iteration', position: 'insideBottom', offset: -5 }}
+                                    ticks={data.allParticleData.map(d => d.iteration)}
                                 />
                                 <YAxis
                                     dataKey="testAcc"
@@ -390,20 +374,6 @@ export default function PSOVisualisations() {
                         </table>
                     </div>
                 )}
-            </div>
-
-            <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '4px', boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
-                <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>Summary</h2>
-                <p style={{ marginBottom: '8px' }}>The PSO algorithm converged to a best test accuracy of <strong>{Math.max(...data.bestAccuracies.map(b => b.globalBestAccuracy)).toFixed(4)}</strong>.</p>
-                <p style={{ marginBottom: '8px' }}>The best parameters found were:</p>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: '8px' }}>
-                    <li>Hidden Size: {data.bestParams.hidden_size}</li>
-                    <li>Dropout Rate: {data.bestParams.dropout_rate}</li>
-                    <li>Learning Rate: {data.bestParams.learning_rate}</li>
-                    <li>Batch Size: {Math.round(data.bestParams.batch_size)}</li>
-                    <li>Epochs: {Math.round(data.bestParams.epochs)}</li>
-                </ul>
-                <p>These parameters achieved a high test accuracy while properly optimizing the model architecture and training process.</p>
             </div>
         </div >
     );

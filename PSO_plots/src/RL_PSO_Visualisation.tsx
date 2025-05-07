@@ -302,6 +302,7 @@ Best parameters: {'hidden_size': np.float64(181.05556923646176), 'dropout_rate':
                                     dataKey="iteration"
                                     name="Iteration"
                                     label={{ value: 'Iteration', position: 'insideBottom', offset: -5 }}
+                                    ticks={data.allParticleData.map(d => d.iteration)}
                                 />
                                 <YAxis
                                     dataKey="testAcc"
@@ -410,20 +411,6 @@ Best parameters: {'hidden_size': np.float64(181.05556923646176), 'dropout_rate':
                         </table>
                     </div>
                 )}
-            </div>
-
-            <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '4px', boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
-                <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>Summary</h2>
-                <p style={{ marginBottom: '8px' }}>The RL PSO algorithm converged to a best test accuracy of <strong>{Math.max(...data.bestAccuracies.map(b => b.globalBestAccuracy)).toFixed(4)}</strong>.</p>
-                <p style={{ marginBottom: '8px' }}>The best parameters found were:</p>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: '8px' }}>
-                    <li>Hidden Size: {data.bestParams.hidden_size}</li>
-                    <li>Dropout Rate: {data.bestParams.dropout_rate}</li>
-                    <li>Learning Rate: {data.bestParams.learning_rate}</li>
-                    <li>Batch Size: {Math.round(data.bestParams.batch_size)}</li>
-                    <li>Epochs: {Math.round(data.bestParams.epochs)}</li>
-                </ul>
-                <p>These parameters achieved a high test accuracy while properly optimizing the model architecture and training process.</p>
             </div>
         </div >
     );

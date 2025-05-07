@@ -484,41 +484,40 @@ Best parameters: {'hidden_size': np.int64(245), 'dropout_rate': 0.10906815506053
                             <p>Found at Iteration 13 with 3 epochs</p>
                         </div>
 
-                        <div style={{ padding: '20px', backgroundColor: '#f0f9ff', borderRadius: '8px' }}>
-                            <h3 style={{ fontWeight: 'bold', marginBottom: '10px' }}>Optimal Parameters</h3>
-                            <table style={{ width: '100%', borderCollapse: 'collapse', overflow: 'auto' }}>
+                        <div style={{ overflowX: 'auto' }}>
+                            <table style={{ minWidth: '100%', backgroundColor: 'white' }}>
                                 <thead>
-                                    <tr>
-                                        <th style={{ padding: '8px 12px', textAlign: 'left' }}>Parameter</th>
-                                        <th style={{ padding: '8px 12px', textAlign: 'left' }}>Value</th>
-                                        <th style={{ padding: '8px 12px', textAlign: 'left' }}>Description</th>
+                                    <tr style={{ backgroundColor: '#f3f4f6' }}>
+                                        <th style={{ padding: '12px 24px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Parameter</th>
+                                        <th style={{ padding: '12px 24px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Value</th>
+                                        <th style={{ padding: '12px 24px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Hidden Size</td>
-                                        <td>{data.bestParams.hidden_size}</td>
-                                        <td>Number of neurons in hidden layers</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', fontWeight: '500', color: '#111827' }}>Hidden Size</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>{data.bestParams.hidden_size}</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>Number of neurons in hidden layer</td>
                                     </tr>
-                                    <tr>
-                                        <td>Dropout Rate</td>
-                                        <td>{data.bestParams.dropout_rate}</td>
-                                        <td>Rate of randomly dropped connections</td>
+                                    <tr style={{ borderTop: '1px solid #e5e7eb' }}>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', fontWeight: '500', color: '#111827' }}>Dropout Rate</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>{data.bestParams.dropout_rate}</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>Probability of dropout for regularization</td>
                                     </tr>
-                                    <tr>
-                                        <td>Learning Rate</td>
-                                        <td>{data.bestParams.learning_rate}</td>
-                                        <td>Step size for gradient descent updates</td>
+                                    <tr style={{ borderTop: '1px solid #e5e7eb' }}>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', fontWeight: '500', color: '#111827' }}>Learning Rate</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>{data.bestParams.learning_rate}</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>Step size for gradient updates</td>
                                     </tr>
-                                    <tr>
-                                        <td>Batch Size</td>
-                                        <td>{data.bestParams.batch_size}</td>
-                                        <td>Number of samples processed before model update</td>
+                                    <tr style={{ borderTop: '1px solid #e5e7eb' }}>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', fontWeight: '500', color: '#111827' }}>Batch Size</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>{data.bestParams.batch_size}</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>Number of samples per gradient update</td>
                                     </tr>
-                                    <tr>
-                                        <td>Epochs</td>
-                                        <td>{data.bestParams.epochs}</td>
-                                        <td>Number of complete passes through the dataset</td>
+                                    <tr style={{ borderTop: '1px solid #e5e7eb' }}>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', fontWeight: '500', color: '#111827' }}>Epochs</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>{data.bestParams.epochs}</td>
+                                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap', fontSize: '14px', color: '#6b7280' }}>Number of complete passes through the dataset</td>
                                     </tr>
                                 </tbody>
                             </table>
