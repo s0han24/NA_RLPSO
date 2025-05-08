@@ -298,10 +298,6 @@ Best parameters: {'hidden_size': np.int64(245), 'dropout_rate': 0.10906815506053
             title: 'Random vs Optimized Search',
             description: 'Compares accuracy from random and optimized search phases'
         },
-        time: {
-            title: 'Time vs Accuracy',
-            description: 'Shows the relationship between time taken and accuracy achieved'
-        },
         bestParams: {
             title: 'Best Parameters Found',
             description: 'The optimal hyperparameters discovered by Bayesian Optimization'
@@ -413,65 +409,6 @@ Best parameters: {'hidden_size': np.int64(245), 'dropout_rate': 0.10906815506053
                                     fill="#82ca9d"
                                     shape="star"
                                 />
-                            </ScatterChart>
-                        </ResponsiveContainer>
-                    </div>
-                )}
-
-                {activeChart === 'time' && (
-                    <div style={{ height: '400px' }}>
-                        <ResponsiveContainer width="100%" height="100%">
-                            <ScatterChart
-                                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                            >
-                                <CartesianGrid />
-                                <XAxis
-                                    type="number"
-                                    dataKey="timeTaken"
-                                    name="Time (s)"
-                                    label={{ value: 'Time Taken (seconds)', position: 'insideBottomRight', offset: -5 }}
-                                />
-                                <YAxis
-                                    type="number"
-                                    dataKey="accuracy"
-                                    name="Accuracy"
-                                    domain={[0.93, 0.98]}
-                                    label={{ value: 'Test Accuracy', angle: -90, position: 'insideLeft' }}
-                                />
-                                <Tooltip
-                                    formatter={(value, name, props) => {
-                                        if (name === 'accuracy') return [`${value}`, 'Accuracy'];
-                                        if (name === 'timeTaken') return [`${value} s`, 'Time Taken'];
-                                        return [value, name];
-                                    }}
-                                    cursor={{ strokeDasharray: '3 3' }}
-                                    content={({ active, payload }) => {
-                                        if (active && payload && payload.length) {
-                                            return (
-                                                <div style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc' }}>
-                                                    <p>{`Iteration: ${payload[0].payload.iteration}`}</p>
-                                                    <p>{`Accuracy: ${payload[0].payload.accuracy}`}</p>
-                                                    <p>{`Time: ${payload[0].payload.timeTaken} s`}</p>
-                                                    <p>{`Epochs: ${payload[0].payload.epochs}`}</p>
-                                                </div>
-                                            );
-                                        }
-                                        return null;
-                                    }}
-                                />
-                                <Legend />
-                                <Scatter
-                                    name="Iterations"
-                                    data={prepareTimeData()}
-                                    fill="#8884d8"
-                                >
-                                    {prepareTimeData().map((entry, index) => (
-                                        <Scatter
-                                            key={`cell-${index}`}
-                                            fill={entry.accuracy >= 0.97 ? "#82ca9d" : "#8884d8"}
-                                        />
-                                    ))}
-                                </Scatter>
                             </ScatterChart>
                         </ResponsiveContainer>
                     </div>

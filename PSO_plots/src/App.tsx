@@ -4,6 +4,7 @@ import BayesianVisualisation from './Bayesian_visualisations';
 import OptimizationComparison from './compare';
 import PSOVisualizations from './PSO_Visualisation';
 import RLPSOVisualisations from './RL_PSO_Visualisation';
+import GridSearchVisualisation from './GridSearch_visualisation';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'plots' | 'gifs'>('plots');
@@ -60,6 +61,9 @@ function App() {
 
       {activeTab === 'plots' && (
         <>
+          <div className="GridSearch-visualisation">
+            <GridSearchVisualisation />
+          </div>
           <div className="Bayesian-visualisation">
             <BayesianVisualisation />
           </div>

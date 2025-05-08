@@ -85,42 +85,10 @@ export default function OptimizationComparison() {
         return result;
     };
 
-    // Calculate cumulative best accuracy for each algorithm
-    const getCumulativeBestAccuracies = () => {
-        const cumulativeBest: Record<string, OptimizationDataPoint[]> = {
-            'PSO': [],
-            'Bayesian': [],
-            'RLPSO': []
-        };
-
-        Object.keys(cumulativeBest).forEach(algo => {
-            let bestSoFar = 0;
-
-            // Get only points for this algorithm and sort by model trainings
-            const algoPoints = comparisonData
-                .filter(p => p.algorithm === algo)
-                .sort((a, b) => a.modelTrainings - b.modelTrainings);
-
-            algoPoints.forEach(point => {
-                bestSoFar = Math.max(bestSoFar, point.accuracy);
-                cumulativeBest[algo].push({
-                    ...point,
-                    accuracy: bestSoFar
-                });
-            });
-        });
-
-        // Flatten for the chart
-        return Object.values(cumulativeBest).flat();
-    };
-
-    const cumulativeData = getCumulativeBestAccuracies();
-
     // Calculate each algorithm's efficiency (accuracy gain per model training)
     const getAlgorithmStatistics = () => {
         const stats: Record<string, {
             maxAccuracy: number;
-            avgAccuracy: number;
             trainsToMax: number;
             efficiency: number;
         }> = {};
@@ -138,7 +106,6 @@ export default function OptimizationComparison() {
         Object.keys(byAlgo).forEach(algo => {
             const points = byAlgo[algo];
             const maxAcc = Math.max(...points.map(p => p.accuracy));
-            const avgAcc = points.reduce((sum, p) => sum + p.accuracy, 0) / points.length;
 
             // Find point with max accuracy
             const maxPoint = points.find(p => p.accuracy === maxAcc);
@@ -149,11 +116,16 @@ export default function OptimizationComparison() {
 
             stats[algo] = {
                 maxAccuracy: maxAcc,
-                avgAccuracy: avgAcc,
                 trainsToMax,
                 efficiency
             };
         });
+
+        stats['Grid Search'] = {
+            maxAccuracy: 0.9780,
+            trainsToMax: 81,
+            efficiency: 0.9780 / 81,
+        };
 
         return stats;
     };
@@ -332,9 +304,6 @@ export default function OptimizationComparison() {
                                         <span style={{ fontWeight: 'bold' }}>Max Accuracy:</span> {stats[algorithm].maxAccuracy.toFixed(4)}
                                     </div>
                                     <div>
-                                        <span style={{ fontWeight: 'bold' }}>Avg Accuracy:</span> {stats[algorithm].avgAccuracy.toFixed(4)}
-                                    </div>
-                                    <div>
                                         <span style={{ fontWeight: 'bold' }}>Trainings to Max:</span> {stats[algorithm].trainsToMax}
                                     </div>
                                     <div>
@@ -372,16 +341,6 @@ export default function OptimizationComparison() {
                                     Object.keys(stats).reduce((a, b) => stats[a].efficiency > stats[b].efficiency ? a : b)
                                 } with an efficiency score of {
                                     stats[Object.keys(stats).reduce((a, b) => stats[a].efficiency > stats[b].efficiency ? a : b)].efficiency.toFixed(5)
-                                }
-                            </p>
-
-                            <p>
-                                <strong>Recommendation:</strong> {
-                                    stats['Bayesian'].efficiency > stats['PSO'].efficiency && stats['Bayesian'].efficiency > stats['RLPSO'].efficiency
-                                        ? "Bayesian Optimization is most efficient for this problem, finding high-quality solutions with minimal model trainings."
-                                        : stats['PSO'].efficiency > stats['RLPSO'].efficiency
-                                            ? "PSO Search is surprisingly effective for this problem space, suggesting the hyperparameter landscape may be relatively smooth."
-                                            : "RLPSO shows the best balance between exploration and exploitation, efficiently finding good solutions with parallel particle evaluations."
                                 }
                             </p>
                         </div>
